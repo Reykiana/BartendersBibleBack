@@ -33,6 +33,9 @@ public class Recipe {
     @Column(name = "estimated-time", nullable = true)
     private Long estimatedtime;
 
+    @Column(name = "image", nullable = true)
+    private String image;
+
     @ManyToOne(targetEntity = User.class)
     private User user;
 
@@ -44,4 +47,15 @@ public class Recipe {
 
     @ManyToOne(targetEntity = Favorite.class)
     private Favorite favorite;
+
+    public boolean hasAlcohol(){
+        for (Ingredient ingredient:ingredients) {
+            if (ingredient.getHasAlcohol()){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
+
